@@ -2,14 +2,16 @@ title: Chen Chen # your name (or website title) here
 logo: "/images/logo.png?raw=true" # your photo (or logo) here
 description: > # your text below (remove <br> elements if you don't need line breaks)
   <br><br>
-  Data Scientist, Data Analysis, Computational Chemist
+  Data Scientist/Analysis
+  <br>
+  Computational Scientist/Chemist
   <br><br>
-  <a href="https://sites.google.com/d/0B9se8hCUkQS6VGlhSG9ldE4tX28/p/0B9se8hCUkQS6c1ZhOF9FTG1QZ3M/edit?resourcekey=0-RtCbdEJXjvGol2rqa0XYWg">Personal Website</a> 
-  <br><br>
+  <a href="https://sites.google.com/view/cchen5891">Personal Website</a> 
+  <br>
   <a href="https://scholar.google.com/citations?user=03o6BuYAAAAJ&hl=en">Google Scholar</a> 
-  <br><br>
+  <br>
   <a href="https://www.linkedin.com/in/cchen5891">LinkedIn</a> 
-  <br><br>
+  <br>
   <a href="https://github.com/cchen5891">GitHub</a> 
   
 remote_theme: pages-themes/minimal@v0.2.0
