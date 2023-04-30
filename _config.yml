@@ -1,13 +1,14 @@
 title: Chen Chen # your name (or website title) here
 logo: "/images/logo.png?raw=true" # your photo (or logo) here
 description: > # your text below (remove <br> elements if you don't need line breaks)
-  Data Scientist/Analysis
   <br><br>
+  Data Scientist/Analysis
   Computational Scientist/Chemist
   <br><br>
-  <a href="https://www.linkedin.com/in/cchen5891/">LinkedIn Profile</a> 
+  <a href="https://sites.google.com/d/0B9se8hCUkQS6VGlhSG9ldE4tX28/p/0B9se8hCUkQS6c1ZhOF9FTG1QZ3M/edit?resourcekey=0-RtCbdEJXjvGol2rqa0XYWg">Personal Website</a> 
+  <a href="https://scholar.google.com/citations?user=03o6BuYAAAAJ&hl=en">Google Scholar</a> 
+  <a href="https://www.linkedin.com/in/cchen5891/">LinkedIn</a> 
   
 remote_theme: pages-themes/minimal@v0.2.0
 plugins:
 - jekyll-remote-theme
-google_analytics: UA-000000-0 # your Google Analytics tracking ID here
