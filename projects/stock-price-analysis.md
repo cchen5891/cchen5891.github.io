@@ -1,6 +1,6 @@
 # Stock price analysis
 
-**Author:** `Chen Chen`  **Date:** `2023-05-02`
+**Author:** `Chen Chen` | **Date:** `2023-05-02`
 
 **Tags:** `Python`, `Statistics`, `SQL`
 
