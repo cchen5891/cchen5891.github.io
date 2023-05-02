@@ -1,6 +1,6 @@
 # Stock price analysis
 
-`Chen Chen` `2023-05-02`
+`Chen Chen` | `2023-05-02`
 
 **Tags:** `Python`, `Statistics`, `SQL` 
 
@@ -17,28 +17,6 @@ Stock price prediction has always been a hot topic and understanding the fluctua
 Retrieving online stock data can be easily achieved by using Google Sheets or Excel to pull data from Google Finance or Yahoo Finance. This is convenient until a large amount of data is needed to do some more complex analyses. Querying a local database considerably simplifies the process of data preparation and accelerates the analysis.
 
 The MySQL database is constructed following the article [Securities Master Database with MySQL and Python](https://www.quantstart.com/articles/Securities-Master-Database-with-MySQL-and-Python/). A list of S&P500 companies together with a few index and sector exchange-traded funds (ETFs) was monitored and the time period spans from 2013 to 2023.
-
-```sql
-USE securities_master;
-SHOW TABLES;
-+-----------------------------+
-| Tables_in_securities_master |
-+-----------------------------+
-| daily_price                 |
-| data_vendor                 |
-| exchange                    |
-| symbol                      |
-+-----------------------------+
-
-SELECT COUNT(*)
-FROM symbols;
-+----------+
-| COUNT(*) |
-+----------+
-|      515 |
-+----------+
-```
-
 ## Exploratory analysis
 
 ### Stock price changes on different weekdays
