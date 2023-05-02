@@ -16,6 +16,10 @@
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
+[Project 4 Title](/rst_page)
+<img src="images/dummy_thumbnail.jpg?raw=true"/>
+
+---
 
 ### Category Name 2
 
