@@ -1,9 +1,8 @@
 # Stock price analysis
 
 **Author:** `Chen Chen`
-**Date:**`2023-05-02`
-**Tags:** `Python`, `Statistics`, `SQL` 
-
+**Date:** `2023-05-02`
+**Tags:** `Python`, `Statistics`, `SQL`
 
 ## Introduction
 Stock price prediction has always been a hot topic and understanding the fluctuation behavior is the key. In the present project, the following tasks are completed:
