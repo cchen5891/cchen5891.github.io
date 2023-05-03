@@ -1,15 +1,15 @@
 # Stock price analysis
 
-**Author:** `Chen Chen`  **Date:** `2023-05-02`
-
-**Tags:** `Python`, `Statistics`, `SQL`
+**Author:** `Chen Chen`<br>
+**Date:** `2023-05-02`<br>
+**Tags:** `Python`, `Statistics`, `SQL`<br>
 
 ## Introduction
 Stock price prediction has always been a hot topic and understanding the fluctuation behavior is the key. In the present project, the following tasks are completed:
 
-- A local MySQL database Was constructed by pulling data from [Yahoo Finance](https://finance.yahoo.com/) 
+- A local MySQL database Was constructed by pulling data from [Yahoo Finance](https://finance.yahoo.com/).
 - Some basic analyses were performed to check if some of the intuitions about the stocks are correct.
-- The Markov Chain model was built to understand some basic fluctuation patterns
+- The Markov Chain model was built to understand some basic fluctuation patterns.
 
 ## Data preparation
 Retrieving online stock data can be easily achieved by using Google Sheets or Excel to pull data from Google Finance or Yahoo Finance. This is convenient until a large amount of data is needed to do some more complex analyses. Querying a local database considerably simplifies the process of data preparation and accelerates the analysis.
