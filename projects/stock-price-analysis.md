@@ -44,7 +44,7 @@ MCM describes the probability of transition from one state to another, where the
 	<img src="../images/stock-price-markov-transition-grid.png"  width="60%">
 </p>
 
-With these defined states, a Markov transition grid can be built as shown above. 
+With these defined states, Markov transition grids can be constructed as shown above. A sequence is formed by connecting consecutive states (continuous trading days) and there is an average price/volume increase/decrease corresponding to a positive/negative outcome. Specifically, for either case, a Markov transition grid is plotted, and most of the transitions are of low and equal possibility (exactly equal probability should be 1/27 = 0.037). However, a few hot spots can be also observed, indicating a strong correlation between the two different states. More care is needed to identify the properties of these state couples, which can be helpful in predicting certain trading behaviors.
 
 ## Conclusion
-In this project, we've built a local MySQL database and retrieved data from Yahoo Finance for 500+ stocks. The simple analyses performed on `SPY` revealed that there doesn't seem to be any general price change pattern on different weekdays. The Markov chain model was built to further check the stock price fluctuation styles, which can be applied to screen other stock candidates to identify the hidden patterns. 
+In this project, we've built a local MySQL database and retrieved data from Yahoo Finance for 500+ stocks. The simple analyses performed on `SPY` revealed that there doesn't seem to be any general price change pattern on different weekdays. The Markov chain model was built to further check the correlation of different stock states, which can be applied to screen other stock candidates to identify hidden patterns. 
