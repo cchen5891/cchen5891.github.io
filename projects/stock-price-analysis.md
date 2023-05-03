@@ -22,12 +22,22 @@ A while ago, some friends mentioned to me that there seems to be a trend that th
 
 <p align="center">
 	<img src="../images/stock-price-monday-friday.png"  width="60%">
+	<br>
+	<font size="2">
+		<b>Figure 1. </b>
+		Stock price change (top) and density distribution (bottom) on Mondays and Fridays for SPY.
+	</font>
 </p>
 
 However, from the results shown above, it is apparent that there are no consistent patterns for the price change on Mondays and Fridays, showing a similar mean price change of 0.02%. 
 
 <p align="center">
 	<img src="../images/stock-price-weekday-stats.png"  width="60%">
+	<br>
+	<font size="2">
+		<b>Figure 2. </b>
+		Statistics of stock price change on different weekdays for SPY.
+	</font>
 </p>
 
 By plotting statistics of all five days on the above box plot and comparing all the data to the zero-percent-change horizontal baseline (blue dashed line), it is clear that for `SPY`, there is no specific price change pattern on any weekday. Note that, this might not be universal and represents only a general market behavior.
@@ -41,6 +51,11 @@ MCM describes the probability of transition from one state to another, where the
 
 <p align="center">
 	<img src="../images/stock-price-markov-transition-grid.png"  width="60%">
+	<br>
+	<font size="2">
+		<b>Figure 3. </b>
+		Markov transition grids for state sequence with positive (top) and negative (bottom) outcomes for SPY. Color represents the probability of each x -> y pair.
+	</font>
 </p>
 
 With these defined states, Markov transition grids can be constructed as shown above. A sequence is formed by connecting consecutive states (continuous trading days) and there is an average price/volume increase/decrease corresponding to a positive/negative outcome. Specifically, for either case, a Markov transition grid is plotted, and most of the transitions are of low and equal possibility (exactly equal probability should be 1/27 = 0.037). However, a few hot spots can be also observed, indicating a strong correlation between the two different states. More care is needed to identify the properties of these state couples, which can be helpful in predicting certain trading behaviors.
