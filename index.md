@@ -3,7 +3,7 @@
 ---
 ## [SARS-CoV-2 variant binding affinity prediction](/sample_page)
 
-**Tags:** `Python`, `Machine learning`, `CNN`
+**Tags:** `Python`, `Machine Learning`, `Bioinformatics`, `(Convolutional) Neural Network`,
 
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
