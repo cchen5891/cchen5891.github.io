@@ -7,10 +7,9 @@
 ## Introduction
 Stock price prediction has always been a hot topic and understanding the fluctuation behavior is the key. In the present project, the following tasks are completed:
 
-- A local MySQL database Was constructed by pulling data from Yahoo Finance 
+- A local MySQL database Was constructed by pulling data from [Yahoo Finance](https://finance.yahoo.com/) 
 - Some basic analyses were performed to check if some of the intuitions about the stocks are correct.
 - The Markov Chain model was built to understand some basic fluctuation patterns
-
 
 ## Data preparation
 Retrieving online stock data can be easily achieved by using Google Sheets or Excel to pull data from Google Finance or Yahoo Finance. This is convenient until a large amount of data is needed to do some more complex analyses. Querying a local database considerably simplifies the process of data preparation and accelerates the analysis.
@@ -19,7 +18,7 @@ The MySQL database is constructed following the article [Securities Master Datab
 ## Exploratory analysis
 
 ### Stock price changes on different weekdays
-A while ago, some friends mentioned to me that there seems to be a trend that the stock prices usually increase on Fridays and decline on Mondays, and others might have the opposite impression of that. The difference between the close_price and the open_price of some ETFs such as `SPY` can be used to check if this trend exists.
+A while ago, some friends mentioned to me that there seems to be a trend that the stock prices usually increase on Fridays and decline on Mondays, and others might have the opposite impression of that. The difference between the close_price and the open_price of some ETFs such as [`SPY`](https://finance.yahoo.com/quote/SPY?p=SPY&.tsrc=fin-srch) can be used to check if this trend exists.
 
 <p align="center">
 	<img src="../images/stock-price-monday-friday.png"  width="60%">
