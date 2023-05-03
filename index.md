@@ -1,23 +1,23 @@
-## Portfolio
+# Portfolio
 
 ---
 
-### Category Name 1 
+## CATEGORY: Data Science and Analysis
 
-[Project 1 Title](/sample_page)
+[### Project 1 Title](/sample_page)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
-[Project 2 Title](/pdf/sample_presentation.pdf)
+[### Project 2 Title](/pdf/sample_presentation.pdf)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
-[Stock price analysis](../projects/stock-price-analysis)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[### Stock price analysis](../projects/stock-price-analysis)
+<img src="images/stock-price-toc.png?raw=true"/>
 
 ---
 
-### Category Name 2
+## Category Name 2
 
 - [Project 1 Title](http://example.com/)
 - [Project 2 Title](http://example.com/)
