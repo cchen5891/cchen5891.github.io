@@ -1,6 +1,6 @@
 # Stock price analysis
 
-**Author:** `Chen Chen`, **Date:** `2023-05-02`
+**Author:** `Chen Chen`  **Date:** `2023-05-02`
 
 **Tags:** `Python`, `Statistics`, `SQL`
 
@@ -21,10 +21,8 @@ The MySQL database is constructed following the article [Securities Master Datab
 A while ago, some friends mentioned to me that there seems to be a trend that the stock prices usually increase on Fridays and decline on Mondays, and others might have the opposite impression of that. The difference between the close_price and the open_price of some ETFs such as [`SPY`](https://finance.yahoo.com/quote/SPY?p=SPY&.tsrc=fin-srch) can be used to check if this trend exists.
 
 <p align="center">
-	<img src="../images/stock-price-monday-friday.png"  width="60%">
-	<br>
-	<font size="2">
-		<b>Figure 1. </b>
+	<img src="../images/stock-price-monday-friday.png"  width="60%"><br>
+	<font size="2"><b>Figure 1. </b>
 		Stock price change (top) and density distribution (bottom) on Mondays and Fridays for SPY.
 	</font>
 </p>
@@ -32,10 +30,8 @@ A while ago, some friends mentioned to me that there seems to be a trend that th
 However, from the results shown above, it is apparent that there are no consistent patterns for the price change on Mondays and Fridays, showing a similar mean price change of 0.02%. 
 
 <p align="center">
-	<img src="../images/stock-price-weekday-stats.png"  width="60%">
-	<br>
-	<font size="2">
-		<b>Figure 2. </b>
+	<img src="../images/stock-price-weekday-stats.png"  width="60%"><br>
+	<font size="2"><b>Figure 2. </b>
 		Statistics of stock price change on different weekdays for SPY.
 	</font>
 </p>
@@ -50,10 +46,8 @@ The implementation of MCM to the stock prices is inspired by the tutorial [Predi
 MCM describes the probability of transition from one state to another, where the state is coarsely defined by a three-letter string corresponding to the change of the close price, volume, and daily percentage as compared to the previous day. Possible values for the gaps are 'L', 'M', and 'H', referring to low, medium, and high, respectively. For example, a state of 'MLH' means that, compared to the previous day, the change of close price is medium, the change of volume is low, and the change of daily percentage is high.
 
 <p align="center">
-	<img src="../images/stock-price-markov-transition-grid.png"  width="60%">
-	<br>
-	<font size="2">
-		<b>Figure 3. </b>
+	<img src="../images/stock-price-markov-transition-grid.png"  width="60%"><br>
+	<font size="2"><b>Figure 3. </b>
 		Markov transition grids for state sequence with positive (top) and negative (bottom) outcomes for SPY. Color represents the probability of each x -> y pair.
 	</font>
 </p>
