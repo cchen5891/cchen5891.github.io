@@ -1,32 +1,26 @@
-# Portfolio
+# Project portfolio
 
 ---
+## [SARS-CoV-2 variant binding affinity prediction](/sample_page)
 
-## CATEGORY: Data Science and Analysis
+**Tags:** `Python`, `Machine learning`, `CNN`
 
-[### Project 1 Title](/sample_page)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
-[### Project 2 Title](/pdf/sample_presentation.pdf)
+## [Polymer properties prediction](/pdf/sample_presentation.pdf)
+
+**Tags:** `Python`, `Cheminformatics`
+
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
-[### Stock price analysis](../projects/stock-price-analysis)
+
+## [Stock price analysis](../projects/stock-price-analysis)
+
+**Tags:** `Python`, `Statistics`, `SQL`
+
+Predicting the stock price fluctuation behavior relies on the understanding of its historical patterns. This project covers the construction of a local database, the fundamental statistical analyses of stock prices, and the design of a Markov chain model.
+ 
 <img src="images/stock-price-toc.png?raw=true"/>
-
----
-
-## Category Name 2
-
-- [Project 1 Title](http://example.com/)
-- [Project 2 Title](http://example.com/)
-- [Project 3 Title](http://example.com/)
-- [Project 4 Title](http://example.com/)
-- [Project 5 Title](http://example.com/)
-
----
-
-
-
 
