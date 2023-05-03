@@ -1,11 +1,13 @@
 # Project portfolio
 
 ---
-## [SARS-CoV-2 variant binding affinity prediction](/sample_page)
+## [SARS-CoV-2 variant binding affinity prediction](../projects/binding-affinity-prediction)
 
-**Tags:** `Python`, `Machine Learning`, `Bioinformatics`, `Convolutional Neural Network`,
+**Tags:** `Python`, `Machine Learning`, `Bioinformatics`, `Convolutional Neural Network`
 
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+The binding between the SARS-CoV-2 virus and human receptors represents the first crucial step for cellular entry, where amino acid (AA) changes in the variants could affect their binding affinity significantly. This project brief describes how a convolutional neural network model is built to predict the binding affinity change upon AA changes, and how this model can be applied to study the animals.
+
+<img src="images/binding-affinity-toc.png?raw=true"/>
 
 ---
 ## [Polymer properties prediction](/pdf/sample_presentation.pdf)
