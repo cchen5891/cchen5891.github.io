@@ -1,14 +1,14 @@
 # Project portfolio
 
 ---
-## [SARS-CoV-2 variant binding affinity prediction](/sample_page)
+### [SARS-CoV-2 variant binding affinity prediction](/sample_page)
 
-**Tags:** `Python`, `Machine Learning`, `Bioinformatics`, `(Convolutional) Neural Network`,
+**Tags:** `Python`, `Machine Learning`, `Bioinformatics`, `Convolutional Neural Network`,
 
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
-## [Polymer properties prediction](/pdf/sample_presentation.pdf)
+### [Polymer properties prediction](/pdf/sample_presentation.pdf)
 
 **Tags:** `Python`, `Cheminformatics`
 
@@ -16,7 +16,7 @@
 
 ---
 
-## [Stock price analysis](../projects/stock-price-analysis)
+### [Stock price analysis](../projects/stock-price-analysis)
 
 **Tags:** `Python`, `Statistics`, `SQL`
 
