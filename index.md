@@ -10,11 +10,13 @@ The binding between the SARS-CoV-2 virus and human receptors represents the firs
 <img src="images/binding-affinity-toc.png?raw=true"/>
 
 ---
-## [Polymer properties prediction](/pdf/sample_presentation.pdf)
+## [Polymer properties prediction](../projects/polymer-property-prediction.md)
 
-**Tags:** `Python`, `Cheminformatics`
+**Tags:** `Python`, `Cheminformatics`, `Machine Learning`, `Decision Tree`
 
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+The properties of polymers are strongly but not exclusively by the monomers that construct them. This project combines cheminformatics and machine learning to build a simple decision tree model to estimate the glass transition temperature (Tg) and intrinsic viscosity (IV) of some homopolymers.
+
+<img src="images/polymer-property-toc?raw=true"/>
 
 ---
 

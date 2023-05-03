@@ -6,11 +6,17 @@
 
 ## Introduction
 
-Stock price prediction has always been a hot topic and understanding the fluctuation behavior is the key. In the present project, the following tasks are completed:
+The cellular entry of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) involves the association of its receptor binding domain (RBD) with human angiotensin-converting enzyme 2 (hACE2) as the first crucial step. The binding affinity between RBD and ACE2 proteins contributes to infectivity and transmissibility, and amino acid (AA) changes or mutations on either protein can alter the resulting variant's binding affinity to different degrees. To predict the binding affinity of these variants, a machine-learning (ML) model was developed based on the experiment data available and applied to both human and livestock animals.
+
+Specifically, the following tasks are covered in the present project:
 
 - A local MySQL database Was constructed by pulling data from [Yahoo Finance](https://finance.yahoo.com/).
 - Some basic analyses were performed to check if some of the intuitions about the stocks are correct.
 - The Markov Chain model was built to understand some basic fluctuation patterns.
+
+Note that this is a truncated version of the study, to get more technical details, please refer to the original publication [A CNN model for predicting binding affinity changes between SARS-CoV-2 spike RBD variants and ACE2 homologues](https://www.biorxiv.org/content/10.1101/2022.03.22.485413v1).
+
+
 
 ## Data preparation
 Retrieving online stock data can be easily achieved by using Google Sheets or Excel to pull data from Google Finance or Yahoo Finance. This is convenient until a large amount of data is needed to do some more complex analyses. Querying a local database considerably simplifies the process of data preparation and accelerates the analysis.
