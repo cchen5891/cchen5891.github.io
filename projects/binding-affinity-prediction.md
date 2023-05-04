@@ -2,64 +2,96 @@
 
 **Author:** `Chen Chen`<br>
 **Date:** `2023-05-03`<br>
-**Tags:** `Python`, `Machine Learning`, `Bioinformatics`, `Convolutional Neural Network`<br>
+**Tags:** `Python`, `Machine Learning`, `Statistics`, `Bioinformatics`<br>
 
 ## Introduction
 
-The cellular entry of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) involves the association of its receptor binding domain (RBD) with human angiotensin-converting enzyme 2 (hACE2) as the first crucial step. The binding affinity between RBD and ACE2 proteins contributes to infectivity and transmissibility, and amino acid (AA) changes or mutations on either protein can alter the resulting variant's binding affinity to different degrees. To predict the binding affinity of these variants, a machine-learning (ML) model was developed based on the experiment data available and applied to both human and livestock animals.
+The cellular entry of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) involves the association of its receptor binding domain (RBD) with human angiotensin-converting enzyme 2 (hACE2) as the first crucial step. The binding affinity between RBD and ACE2 proteins contributes to infectivity and transmissibility, and amino acid (AA) changes or mutations on either protein can alter the resulting variant's binding affinity to different degrees. To predict the binding affinity of these variants, a machine-learning (ML) model was developed based on the experiment data available and applied to both human and livestock cases.
 
 Specifically, the following tasks are covered in the present project:
 
-- A local MySQL database Was constructed by pulling data from [Yahoo Finance](https://finance.yahoo.com/).
-- Some basic analyses were performed to check if some of the intuitions about the stocks are correct.
-- The Markov Chain model was built to understand some basic fluctuation patterns.
+- Data preparation section describes the collection of experimental data, protein sequence data, homology modeling, and the calculation of AA distance maps.
+- Model development section summarizes the feature encoding, model training, and validation.
+- Results section briefly discusses the predictions from the present model and their implications.
 
 Note that this is a truncated version of the study, to get more technical details, please refer to the original publication [A CNN model for predicting binding affinity changes between SARS-CoV-2 spike RBD variants and ACE2 homologues](https://www.biorxiv.org/content/10.1101/2022.03.22.485413v1).
 
+Before delving into the details, a few concepts are introduced here to help the reader understand the story better:
 
+- **Wild type (WT):** The original version of the SARS-CoV-2 virus.
+- **Variant:** The SARS-CoV-2 virus that has one or more AA changes (on the RBD) than the WT.
+- **(K<sub>D,app</sub>) ratios:** The apparent dissociation constant ratio between the variants and the WT. K<sub>D,app</sub> > 1 indicates the variant has stronger binding than WT, and K<sub>D,app</sub> < 1 suggests a weaker binding, and K<sub>D,app</sub> = 1 means there is no binding strength difference.
+- **Amino acid:** Amino acids are organic compounds that contain both amino and carboxylic acid functional groups.[1] Although over 500 amino acids exist in nature, by far the most important are the alpha-amino acids, from which proteins are composed. *-- Wikipedia*
+- **Residue:** In biochemistry and molecular biology, a residue refers to a specific monomer within the polymeric chain of a polysaccharide, protein or nucleic acid. *-- Wikipedia*
+- **Homology modeling:** Also known as comparative modeling of protein, refers to constructing an atomic-resolution model of the "target" protein from its amino acid sequence and an experimental three-dimensional structure of a related homologous protein (the "template"). *-- Wikipedia*
 
 ## Data preparation
-Retrieving online stock data can be easily achieved by using Google Sheets or Excel to pull data from Google Finance or Yahoo Finance. This is convenient until a large amount of data is needed to do some more complex analyses. Querying a local database considerably simplifies the process of data preparation and accelerates the analysis.
+Generally, the following categories of data are prepared for different purposes:
 
-The MySQL database is constructed following the article [Securities Master Database with MySQL and Python](https://www.quantstart.com/articles/Securities-Master-Database-with-MySQL-and-Python/). A list of S&P500 companies together with a few index and sector exchange-traded funds (ETFs) was monitored and the time period spans from 2013 to 2023.
-## Exploratory analysis
-
-### Stock price changes on different weekdays
-A while ago, some friends mentioned to me that there seems to be a trend that the stock prices usually increase on Fridays and decline on Mondays, and others might have the opposite impression of that. The difference between the close_price and the open_price of some ETFs such as [`SPY`](https://finance.yahoo.com/quote/SPY?p=SPY&.tsrc=fin-srch) can be used to check if this trend exists.
+- Experimental data were obtained from the paper [Deep Mutational Scanning of SARS-CoV-2 Receptor Binding Domain Reveals Constraints on Folding and ACE2 Binding](https://www.sciencedirect.com/science/article/pii/S0092867420310035), and [Engineering human ACE2 to optimize binding to the spike protein of SARS coronavirus 2](https://www.science.org/doi/10.1126/science.abc0870) where (K<sub>D,app</sub>) ratios between the variants and the WT is reported for SARS-CoV-2 variants with single and multiple AA changes through mutational scanning.
+- The Homology modelings were performed using SWISS-Model, from where the sequence data of proteins are also obtained.
+- The protein contact map can be generated by utilizing the Protein Contact Maps tool developed by [Benjamin et al](https://nanohub.org/resources/9924/usage). 
+- Identification of protein-protein interfacial contacts using PDBePISA. This information is used in CNN feature encoding process to label whether a specific residue is at the interface or involved in hydrogen bonds and salt bridges, such that the weight of the feature could be adjusted independently. 
 
 <p align="center">
-	<img src="../images/stock-price-monday-friday.png"  width="60%"><br>
+	<img src="../images/binding-affinity-prediction/methodology.png"  width="90%"><br>
 	<font size="2"><b>Figure 1. </b>
-		Stock price change (top) and density distribution (bottom) on Mondays and Fridays for SPY.
+		Comparison of K<sub>D,app</sub> ratio between experiments and CNN_seq models predictions from five-fold cross-validation tests on 8,440 variants. Correctly classified variants are colored in blue, incorrectly classified variants are colored in red, and variants with unchanged binding affinities are colored in green. Horizontal and vertical dashed lines are drawn to indicate the dividing line where K<sub>D,app</sub> ratio equals 1, and a diagonal solid line is drawn to indicate perfect correlation.
 	</font>
 </p>
 
-However, from the results shown above, it is apparent that there are no consistent patterns for the price change on Mondays and Fridays, showing a similar mean price change of 0.02%. 
+As illustrated above, upon acquiring all these data, the interfacial residues can be identified (Figure 1A), the residue-residue distances can be determined (Figure 1B), all of which will be fed into the convolutional neural network (CNN) model (Figure 1C) to be built.
+
+## Model development
+
+### Feature encoding
+
+The CNN_seq model uses both sequence-based and structure-based features in model construction to maximize the utilization of available data. For the human case, the sequences and three-dimensional (3D) structure of SARS-CoV-2 spike RBD in complex with hACE2 were obtained from the Protein Data Bank (PDB ID: 6LZG), for the animal cases, the sequences of ACE2 proteins were collected from UniProt for four species: deer (Odocoileus virginianus, ID: A0A6J0Z472), cattle (Bos indicus × Bos taurus, ID: A0A4W2H6E0), pig (Sus scrofa, ID: A0A220QT48), and chicken (Gallus gallus, ID: F1NHR4).  Due to the lack of experimentally determined structures for these animals, we used SWISS-Model to perform homology modeling and generated 3D structures for the complexes. Subsequent structural refinement for each complex was performed through an MD simulation with explicit water.
+
+### Model training and validation
+For model evaluation, we followed the five-fold cross-validation procedure, where the entire dataset was split into five subsets, with each subset considered as the test set once, and the rest of the four subsets are used together to form the training set. A complete cycle of five-fold cross-validation produced five individual models, and each model made predictions on the subset of variants that the model itself did not see. Combining predictions of the five subsets, all the variants in the original dataset were predicted once, and the performance of the model can be fairly evaluated. Two metrics were used to evaluate the performance of the CNN_seq model, the percent recovery of correct variant classification (%VC) and the Pearson correlation coefficient (r). The %VC calculates in percentage the accuracy of classifying the direction of change in the binding affinity compared to WT, while r measures the strength of the linear correlation between the predicted and experimental K<sub>D,app</sub> ratio values. 
 
 <p align="center">
-	<img src="../images/stock-price-weekday-stats.png"  width="60%"><br>
-	<font size="2"><b>Figure 2. </b>
-		Statistics of stock price change on different weekdays for SPY.
+	<img src="../images/binding-affinity-prediction/train-validation.png" width="60%"><br>
+	<font size="2"><b>Figure 1. </b>
+		Comparison of K<sub>D,app</sub> ratio between experiments and CNN_seq models predictions from five-fold cross-validation tests on 8,440 variants. Correctly classified variants are colored in blue, incorrectly classified variants are colored in red, and variants with unchanged binding affinities are colored in green. Horizontal and vertical dashed lines are drawn to indicate the dividing line where K<sub>D,app</sub> ratio equals 1, and a diagonal solid line is drawn to indicate perfect correlation.
 	</font>
 </p>
 
-By plotting statistics of all five days on the above box plot and comparing all the data to the zero-percent-change horizontal baseline (blue dashed line), it is clear that for `SPY`, there is no specific price change pattern on any weekday. Note that, this might not be universal and represents only a general market behavior.
+The averaged results from the five-fold cross-validation tests of the model achieved a %VC of 83.28% and a correlation coefficient r of 0.85 for a complete dataset of 8,440 variants, indicating the robustness of the achieved model.
 
-### Markov chain model (MCM)
-*"A Markov chain or Markov process is a stochastic model describing a sequence of possible events in which the probability of each event depends only on the state attained in the previous event." -- Wikipedia*
-
-The implementation of MCM to the stock prices is inspired by the tutorial [Predict Stock-Market Behavior with Markov Chains and Python](https://www.viralml.com/static/code/Predict-Stock-Market-With-Markov-Chains-and-Python.html). Essentially, the objective of the analysis is to predict the price change depending on the historical patterns. For example, if a stock's price has been going up for three days by 2%, how likely it will increase on the fourth day? Apparently, a definite answer probably does not exist but knowing how much this method can do can still be beneficial.
-
-MCM describes the probability of transition from one state to another, where the state is coarsely defined by a three-letter string corresponding to the change of the close price, volume, and daily percentage as compared to the previous day. Possible values for the gaps are 'L', 'M', and 'H', referring to low, medium, and high, respectively. For example, a state of 'MLH' means that, compared to the previous day, the change of close price is medium, the change of volume is low, and the change of daily percentage is high.
+## Results for human
+For experimentally tested variants with multiple amino acid changes we used the reported K<sub>D,app</sub> ratio to make comparisons. Given the often-large differences in the reported values, the median calculated from the available experiment results was used. 
 
 <p align="center">
-	<img src="../images/stock-price-markov-transition-grid.png"  width="60%"><br>
+	<font size="2"><b>Table 1. </b>
+		Comparison of K<sub>D,app</sub> ratio from experiments (Expt), CNN_seq (CNN), and NN_MM-GBSA (NN) model predictions on circulating RBD variants complexed with human and animal ACE2 proteins.
+	</font><br>
+	<img src="../images/binding-affinity-prediction/variant-predictions.png" width="90%">
+</p>
+
+Table 1 summarizes the prediction of the present CNN\_seq model on the circulating variants. For this small blinded test set, the CNN_seq model achieved a %VC of 92.9% and r of 0.60.
+
+<p align="center">
+	<img src="../images/binding-affinity-prediction/human-deer.png" width="60%"><br>
 	<font size="2"><b>Figure 3. </b>
-		Markov transition grids for state sequence with positive (top) and negative (bottom) outcomes for SPY. Color represents the probability of each x -> y pair.
+		Comparison of K<sub>D,app</sub> ratio between experiments and CNN_seq models predictions from scanning on 3900 variants with one amino acid change. Scanning results are colored in blue, and circulating variants are labeled in red or indicated in the inset table. A diagonal dashed line is drawn to indicate the perfect positive correlation. 
 	</font>
 </p>
 
-With these defined states, Markov transition grids can be constructed as shown above. A sequence is formed by connecting consecutive states (continuous trading days) and there is an average price/volume increase/decrease corresponding to a positive/negative outcome. Specifically, for either case, a Markov transition grid is plotted, and most of the transitions are of low and equal possibility (exactly equal probability should be 1/27 = 0.037). However, a few hot spots can be also observed, indicating a strong correlation between the two different states. More care is needed to identify the properties of these state couples, which can be helpful in predicting certain trading behaviors.
+Figure 3 compares the CNN_seq predicted and experimental K<sub>D,app</sub> ratio values for variants formed by hACE2 and RBD with single amino acid changes. In total, 195 × 20 = 3,900 RBD variants were scanned, where 3,883 of them have experimental referenced data. We also placed the circulating variants on top of the plot showing the binding affinity improvement strategy of them.
+
+## Results for animals
+To illustrate the variant distribution across the RBD sites under investigation, in Figure 4 we constructed the binding affinity change heatmaps for all 3,900 variants with one amino acid changes followed the pictorial style introduced in Starr et al.30 Each one of the stripes represents the complete scanning results for one of the species, where the horizontal and vertical axes indicate the RBD sites and amino acid, respectively. The small squares are colored according to the CNN\_seq predicted K<sub>D,app</sub> ratio values, with red for lower affinity, blue for higher affinity, and white for neutral or similar affinity. The general patterns of the heatmap for the experimental data (Figure 4A) are well captured in the CNN_seq predictions (Figure 4B) for the human case, in line with the VC% and r values obtained from data shown in Figure 3A.
+
+<p align="center">
+	<img src="../images/binding-affinity-prediction/heatmap.png" width="90%"><br>
+	<font size="2"><b>Figure 4. </b>
+		Binding affinity change heatmaps of RBD variants for ACE2 proteins from human and animal hosts. Experimental values and CNN_seq predictions for human are shown in (A) and (B), and CNN_seq predictions for animals are depicted in (C) deer, (D) cattle, (E) pig, (F) chicken. Squares are colored according to the K<sub>D,app</sub> ratio values. 
+	</font>
+</p>
+
+Apparently, the binding affinity of RBD variants against animal ACE2s follows similar trends as those against human ACE2. White-tailed deer ACE2 binds to RBD almost as tightly as human ACE2 while cattle, pig, and chicken ACE2s bind weakly. The model allows testing whether adaptation of the virus for increased binding with other animals would cause concomitant increases in binding with hACE2 or decreased fitness due to adaptation to other hosts. 
 
 ## Conclusion
-In this project, we've built a local MySQL database and retrieved data from Yahoo Finance for 500+ stocks. The simple analyses performed on `SPY` revealed that there doesn't seem to be any general price change pattern on different weekdays. The Markov chain model was built to further check the correlation of different stock states, which can be applied to screen other stock candidates to identify hidden patterns. 
+This project briefly describes the procedures for building a CNN_seq model that can reasonably predict the effect of mutations on the binding affinity of SARS-CoV-2 for its receptor proteins. This model can be efficiently trained over a relatively large number of data, which allows readily continuous improvement when new experimental data from different sources are available.
