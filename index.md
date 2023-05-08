@@ -12,11 +12,11 @@ The binding between the SARS-CoV-2 virus and human receptors represents the firs
 ---
 ## [Yelp dataset analysis](../projects/yelp-dataset.html)
 
-**Tags:** `R`, `Statistics`, `Tableau`, `SQL`
+**Tags:** `R`, `Python`, `Statistics`, `Tableau`, `SQL`
 
 Yelp’s businesses, reviews, and user data are a subset of its ever-growing database, which is often been chosen as the capstone project for teaching and research purposes. Despite being explored extensively, this dataset is still a good playground for checking knowledge and practicing analysis skills including statistics, programming, and visualization using R or Python.
 
-<img src="images/yelp-dataset-toc?raw=true"/>
+<img src="images/yelp-dataset/toc.png?raw=true"/>
 
 ---
 
