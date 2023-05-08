@@ -10,7 +10,7 @@ The binding between the SARS-CoV-2 virus and human receptors represents the firs
 <img src="images/binding-affinity-prediction/toc.png?raw=true"/>
 
 ---
-## [Yelp dataset analysis](../projects/yelp-dataset.Rmd)
+## [Yelp dataset analysis](../projects/yelp-dataset.html)
 
 **Tags:** `R`, `Statistics`, `Tableau`, `SQL`
 
