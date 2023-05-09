@@ -1,4 +1,4 @@
-# Project portfolio
+# Projects portfolio
 
 ---
 ## [SARS-CoV-2 variant binding affinity prediction](../projects/binding-affinity-prediction)
